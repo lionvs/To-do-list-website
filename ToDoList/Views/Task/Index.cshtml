@@ -1,0 +1,26 @@
+﻿@model System.Collections.Generic.List<ToDoList.DB.Task>
+
+@{
+    ViewBag.Title = "title";
+   
+}
+
+<h2>Current Tasks</h2>
+@using (Html.BeginForm())
+{
+    <ol>
+
+
+        @foreach (var task in Model)
+        {
+            <li>@task.TaskName</li>
+            <ul>
+                @foreach (var sub in task.subTasks)
+                {<li>
+    <input type="checkbox" name="vehicle" value=@sub.IsFinished />
+                   @sub.SubName</li>
+                }
+            </ul>
+        }
+    </ol>
+}
