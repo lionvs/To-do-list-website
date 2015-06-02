@@ -5,8 +5,25 @@
    
 }
 <div ng-controller="mvTaskListCtrl">
-    <h2>Current Tasks</h2>
-    <div ng-repeat="task in tasks">
+    <h2>Unfinished Tasks</h2>
+    <div ng-repeat="task in tasksUnfinished">
+        <h3>{{task.TaskName}}</h3>
+        <ul>
+            <li ng-repeat="subtask in task.subTasks">
+                <div ng-if="subtask.IsFinished">
+                    <del>{{subtask.SubName}}</del>
+                    <button ng-click="subtaskChanged(subtask)">Undo</button>
+                </div>
+                <div ng-if="!subtask.IsFinished">
+                    {{subtask.SubName}}
+                    <button ng-click="subtaskChanged(subtask)">Done</button>
+                </div>
+                   
+            </li>
+        </ul>
+    </div>
+    <h2>Finished Tasks</h2>
+    <div ng-repeat="task in tasksFinished">
         <h3>{{task.TaskName}}</h3>
         <ul>
             <li ng-repeat="subtask in task.subTasks">{{subtask.SubName}}</li>

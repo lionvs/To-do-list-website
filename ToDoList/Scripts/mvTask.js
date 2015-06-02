@@ -1,5 +1,5 @@
 ﻿angular.module('app').factory('mvTask', function ($resource) {
-    var TaskResource = $resource('/api/tasks/:_id', { _id: "@id" }, {
+    var TaskResource = $resource('/api/tasks/:Id', { Id: "@id" }, {
         update: { method: 'PUT', isArray: false }
     });
 
