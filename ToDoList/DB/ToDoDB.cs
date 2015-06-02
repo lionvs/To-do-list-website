@@ -10,5 +10,7 @@ namespace ToDoList.DB
     {
         public DbSet<Task> Tasks { get; set; }
         public DbSet<Category> Categories { get; set; }
+
+        public DbSet<SubTask> SubTasks { get; set; }
     }
 }
