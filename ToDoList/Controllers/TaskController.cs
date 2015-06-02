@@ -17,6 +17,11 @@ namespace ToDoList.Controllers
             var tasks = db.Tasks.ToList();
             return View(tasks);
         }
+        public ActionResult Edit()
+        {
+            var tasks = db.Tasks.ToList();
+            return View(tasks);
+        }
 
     }
 }
