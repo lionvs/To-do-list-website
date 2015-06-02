@@ -13,14 +13,16 @@
 
         @foreach (var task in Model)
         {
-            <li>@task.TaskName</li>
-            <ul>
-                @foreach (var sub in task.subTasks)
-                {<li>
-    <input type="checkbox" name="vehicle" value=@sub.IsFinished />
-                   @sub.SubName</li>
+              
+            <li>@Html.EditorFor(modelitem => task.IsFinished)
+@task.TaskName</li>
+           
+               foreach (var sub in task.subTasks)
+                {<ul>
+   @Html.EditorFor(modelitem => sub.IsFinished)
+                   @sub.SubName</ul>
                 }
-            </ul>
+            
         }
     </ol>
 }
