@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Linq;
 using System.Web;
@@ -14,7 +15,9 @@ namespace ToDoList.DB
 
        public DateTime Date { get; set; }
         public string TaskName { get; set; }
-        public Category TaskCategory { get; set; }
+        [ForeignKey("TaskCategory")]
+        public int CategoryId { get; set; }
+        public virtual Category TaskCategory { get; set; }
         public bool IsFinished { get; set; }
         public virtual List<SubTask> subTasks { get; set; }
 

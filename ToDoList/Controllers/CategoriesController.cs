@@ -12,42 +12,42 @@ using ToDoList.DB;
 
 namespace ToDoList.Controllers
 {
-    public class TasksController : ApiController
+    public class CategoriesController : ApiController
     {
         private ToDoDB db = new ToDoDB();
 
-        // GET api/Tasks
-        public IEnumerable<Task> GetTasks()
+        // GET api/Categories
+        public IEnumerable<Category> GetCategories()
         {
-            return db.Tasks.AsEnumerable();
+            return db.Categories.AsEnumerable();
         }
 
-        // GET api/Tasks/5
-        public Task GetTask(int id)
+        // GET api/Categories/5
+        public Category GetCategory(int id)
         {
-            Task task = db.Tasks.Find(id);
-            if (task == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
-            return task;
+            return category;
         }
 
-        // PUT api/Tasks/5
-        public HttpResponseMessage PutTask(int id, Task task)
+        // PUT api/Categories/5
+        public HttpResponseMessage PutCategory(int id, Category category)
         {
             if (!ModelState.IsValid)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
 
-            if (id != task.Id)
+            if (id != category.Id)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
 
-            db.Entry(task).State = EntityState.Modified;
+            db.Entry(category).State = EntityState.Modified;
 
             try
             {
@@ -61,17 +61,16 @@ namespace ToDoList.Controllers
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        // POST api/Tasks
-        public HttpResponseMessage PostTask(Task task)
+        // POST api/Categories
+        public HttpResponseMessage PostCategory(Category category)
         {
-            task.Date = DateTime.Now;
             if (ModelState.IsValid)
             {
-                db.Tasks.Add(task);
+                db.Categories.Add(category);
                 db.SaveChanges();
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, task);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = task.Id }));
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, category);
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = category.Id }));
                 return response;
             }
             else
@@ -80,16 +79,16 @@ namespace ToDoList.Controllers
             }
         }
 
-        // DELETE api/Tasks/5
-        public HttpResponseMessage DeleteTask(int id)
+        // DELETE api/Categories/5
+        public HttpResponseMessage DeleteCategory(int id)
         {
-            Task task = db.Tasks.Find(id);
-            if (task == null)
+            Category category = db.Categories.Find(id);
+            if (category == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            db.Tasks.Remove(task);
+            db.Categories.Remove(category);
 
             try
             {
@@ -100,7 +99,7 @@ namespace ToDoList.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, task);
+            return Request.CreateResponse(HttpStatusCode.OK, category);
         }
 
         protected override void Dispose(bool disposing)

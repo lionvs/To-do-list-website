@@ -8,23 +8,38 @@
     <h2>Unfinished Tasks</h2>
     <div ng-repeat="task in tasksUnfinished">
         <h3>{{task.TaskName}}</h3>
+        <button ng-click="taskChanged(task)">Done</button>
         <ul>
             <li ng-repeat="subtask in task.subTasks">
                 <div ng-if="subtask.IsFinished">
                     <del>{{subtask.SubName}}</del>
-                    <button ng-click="subtaskChanged(subtask)">Undo</button>
+                    <button ng-click="subtaskChanged(subtask, task)">Undo</button>
+                    <button ng-click="removeSubtaskChanged(subtask, task)">Remove</button>
                 </div>
                 <div ng-if="!subtask.IsFinished">
                     {{subtask.SubName}}
-                    <button ng-click="subtaskChanged(subtask)">Done</button>
+                    <button ng-click="subtaskChanged(subtask, task)">Done</button>
+                    <button ng-click="removeSubtaskChanged(subtask, task)">Remove</button>
                 </div>
-                   
+
             </li>
+
         </ul>
+
+        <input name="newSubtaskName" type="text" placeholder="Subtask name" ng-model="newSubtaskName" />
+        <button ng-click="addnewSubtask(task, newSubtaskName)">Add subtask</button>
+        <br/>
+        
+
     </div>
+    <input name="newTaskName" type="text" placeholder="Task name" ng-model="newTaskName" />
+    <select name="newTaskCategory"  ng-model="newTaskCategory" ng-options="category.Name for category in categories"></select>
+    <button ng-click="addnewTask(newTaskName, newTaskCategory)">Add task</button>
     <h2>Finished Tasks</h2>
+    <button ng-click="removeAllFinishedTasks()">Remove all finished tasks</button>
     <div ng-repeat="task in tasksFinished">
         <h3>{{task.TaskName}}</h3>
+        <button ng-click="taskChanged(task)">Undone</button>
         <ul>
             <li ng-repeat="subtask in task.subTasks">{{subtask.SubName}}</li>
         </ul>
