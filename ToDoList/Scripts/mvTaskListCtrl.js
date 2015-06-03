@@ -49,7 +49,7 @@
     }
 
     $scope.addnewTask = function (taskName, newTaskCategory) {
-        var task = { TaskName: taskName, subTasks: [], TaskCategory: newTaskCategory };
+        var task = { TaskName: taskName, subTasks: [], CategoryId: newTaskCategory.Id };
         $scope.tasksUnfinished.push(task);
         $http.post("/api/tasks/", task);
     }
