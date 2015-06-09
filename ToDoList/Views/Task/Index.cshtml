@@ -6,8 +6,12 @@
 }
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <div ng-controller="mvTaskListCtrl">
+    <button ng-click="sortByName()">Sort by name</button>
+    <label name ="FindCategoryLable" >Find category:</label>
+    <select name="findCategory" ng-model="findCategory" ng-options="category.Name for category in categories"></select>
+    <button ng-click="filterFunction()">Show all</button>
     <h2>Unfinished Tasks</h2>
-    <div name ="" ng-repeat="task in tasksUnfinished">
+    <div name="" ng-repeat="task in tasksUnfinished " ng-show="showTask(task)" >
         <h3>{{task.TaskName}}</h3>
         <button ng-click="taskChanged(task)">Done</button>
         <ul>
@@ -31,13 +35,13 @@
             <button ng-click="addnewSubtask(task, newSubtaskName) ;newSubtaskName = ''">Add subtask</button>
             <br />
         </form>
-</div>
-    <input name="newTaskName" type="text" placeholder="Task name" ng-model="newTaskName" />
-    <select name="newTaskCategory"  ng-model="newTaskCategory" ng-options="category.Name for category in categories"></select>
-    <button ng-click="addnewTask(newTaskName, newTaskCategory)">Add task</button>
+    </div>
+    <input name="newTaskName" type="text" placeholder="Task name" ng-model="newTaskName"/>
+    <select name="newTaskCategory" ng-model="newTaskCategory" ng-options="category.Name for category in categories"></select>
+    <button ng-click="addnewTask(newTaskName, newTaskCategory);newTaskName = ''">Add task</button>
     <h2>Finished Tasks</h2>
     <button ng-click="removeAllFinishedTasks()">Remove all finished tasks</button>
-    <div ng-repeat="task in tasksFinished">
+    <div ng-repeat="task in tasksFinished" ng-show="showTask(task)">
         <h3>{{task.TaskName}}</h3>
         <button ng-click="taskChanged(task)">Undone</button>
         <ul>

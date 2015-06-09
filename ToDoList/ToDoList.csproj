@@ -1065,6 +1065,8 @@
     <Content Include="ScriptsLib\knockout-2.2.0.js" />
     <Content Include="ScriptsLib\modernizr-2.6.2.js" />
     <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\mvCategory.js" />
+    <Content Include="Scripts\mvCategoriesCtrl.js" />
     <Content Include="Scripts\mvSubTask.js" />
     <Content Include="Scripts\mvTask.js" />
     <Content Include="Scripts\mvTaskListCtrl.js" />
