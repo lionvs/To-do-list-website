@@ -10,6 +10,9 @@
     <div name="" ng-repeat="category in allCategories">
         <h3>{{category.Name}}</h3>
         <button ng-click="removeCategory(category)">Remove</button>
+        <input ng-show="category.show" name="CategoryName" type="text" ng-model="category.Name" />
+        <button ng-click="editCategory(category)">Edit</button>
+
 
     </div>
     <input name="newCategoryName" type="text" placeholder="Category name" ng-model="newCategoryName" />

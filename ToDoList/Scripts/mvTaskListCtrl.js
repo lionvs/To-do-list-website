@@ -76,7 +76,7 @@
     //$scope.sortOptions = [{ value: "name", text: "Sort by Name" },
     //    { value: "city", text: "Sort by City" }];
     //$scope.sortOrder = $scope.sortOptions[0].value;
-    $scope.sortByName = function() {
+    $scope.sortByName = function () {
         $scope.tasksUnfinished.sort(function (obj1, obj2) {
             if (obj1.TaskName.toLowerCase() > obj2.TaskName.toLowerCase())
                 return 1;
